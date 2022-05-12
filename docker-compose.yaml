@@ -47,7 +47,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./activity:${ACTIVITY_WORKDIR}
+      - ./activity:/data/activity
       - sock_activity:${SOCKET_DIR}
 
   landing:
@@ -58,7 +58,7 @@ services:
       - db
       - rabbitmq
     volumes:
-      - ./landing:${LANDING_WORKDIR}
+      - ./landing:/data/landing
       - sock_landing:${SOCKET_DIR}
 
 #  redis:

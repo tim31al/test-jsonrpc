@@ -1,0 +1,37 @@
+security:
+    enable_authenticator_manager: true
+
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        login:
+            pattern: ^/auth
+            stateless: true
+            json_login:
+                username_path: email
+                check_path: /auth
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        rpc:
+            pattern: ^/
+            stateless: true
+            jwt: ~
+
+    access_control:
+        - { path: ^/auth, roles: PUBLIC_ACCESS }
+        - { path: ^/,       roles: IS_AUTHENTICATED_FULLY }
+
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: plaintext

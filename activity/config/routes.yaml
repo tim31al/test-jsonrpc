@@ -1,3 +1,5 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+rpc_login_check:
+  path: /auth
+
+json-rpc-endpoint:
+  resource: '@JsonRpcHttpServerBundle/Resources/config/routing/endpoint.xml'
