@@ -55,6 +55,7 @@ services:
     container_name: landing
     working_dir: ${LANDING_WORKDIR}
     depends_on:
+      - activity
       - db
       - rabbitmq
     volumes:

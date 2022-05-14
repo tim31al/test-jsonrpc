@@ -1,25 +1,4 @@
 <?php
-//
-//$finder = (new PhpCsFixer\Finder())
-//    ->in(__DIR__)
-//    ->exclude('var')
-//    ->exclude('vendor')
-//;
-//
-//return (new PhpCsFixer\Config())
-//    ->setRules([
-//        '@PSR12' => true,
-////        '@Symfony' => true,
-////        '@Symfony:risky' => true,
-//        'strict_param' => true,
-//        'array_syntax' => ['syntax' => 'short'],
-//        'php_unit_strict' => true,
-//    ])
-//    ->setFinder($finder)
-//    ->setCacheFile(__DIR__.'/.php_cs.cache')
-//;
-
-
 $fileHeaderComment = <<<COMMENT
 
 (c) Alexandr Timofeev <tim31al@gmail.com>

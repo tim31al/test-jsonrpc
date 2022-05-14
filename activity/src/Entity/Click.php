@@ -12,12 +12,12 @@ namespace App\Entity;
 
 use App\Repository\ClickRepository;
 use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\ArrayShape;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: ClickRepository::class)]
 #[ORM\Table(name: 'activity_clicks')]
 #[ORM\Index(columns: ['url'], name: 'activity_url_idx')]
-class Click implements \JsonSerializable
+class Click implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -83,8 +83,7 @@ class Click implements \JsonSerializable
         return $this;
     }
 
-    #[ArrayShape(['id' => 'int', 'url' => 'string', 'counter' => 'int', 'lastVisit' => "\DateTimeInterface"])]
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
@@ -92,10 +91,5 @@ class Click implements \JsonSerializable
             'counter' => $this->counter,
             'lastVisit' => $this->lastVisit->format('Y-m-d H:i:s'),
         ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
     }
 }

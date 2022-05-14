@@ -31,13 +31,19 @@ class GetClicksMethod implements JsonRpcMethodInterface, MethodWithValidatedPara
 
     public function apply(array $paramList = null): array
     {
-        return $this->repository
+        $clicks = $this->repository
             ->findBy(
                 [],
-                ['url' => 'asc'],
+                ['counter' => 'desc', 'lastVisit' => 'desc'],
                 $paramList['limit'] ?? $this->maxItems,
                 $paramList['offset'] ?? 0
             );
+        $count = $this->repository->count([]);
+
+        return [
+            'clicks' => $clicks,
+            'countAll' => $count
+        ];
     }
 
     public function getParamsConstraint(): Constraint

@@ -17,6 +17,9 @@ use Symfony\Component\Validator\Constraints\Length;
 use Yoanm\JsonRpcParamsSymfonyValidator\Domain\MethodWithValidatedParamsInterface;
 use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
 
+/**
+ * Счетчик кликов.
+ */
 class AddClickMethod implements JsonRpcMethodInterface, MethodWithValidatedParamsInterface
 {
     private EntityManagerInterface $em;
@@ -28,8 +31,10 @@ class AddClickMethod implements JsonRpcMethodInterface, MethodWithValidatedParam
 
     /**
      * {@inheritDoc}
+     *
+     * @param array|null $paramList {url: string, data: string}
      */
-    public function apply(array $paramList = null): array
+    public function apply(array $paramList = null): Click
     {
         $click = $this->em->getRepository(Click::class)
             ->findOneBy(['url' => $paramList['url']]);
@@ -50,7 +55,12 @@ class AddClickMethod implements JsonRpcMethodInterface, MethodWithValidatedParam
 
         $this->em->flush();
 
-        return $click->toArray();
+        return $click;
+    }
+
+    public function add(int $s): int
+    {
+        return $s + 1;
     }
 
     public function getParamsConstraint(): Constraint

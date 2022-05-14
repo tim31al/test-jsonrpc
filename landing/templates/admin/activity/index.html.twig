@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Activity{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1 class="mb-4">Admin Activity</h1>
+
+    {% if error %}
+        <p class="text-danger">Возникла ошибка: {{ error }}</p>
+    {%else %}
+        {% if items|length %}
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">URL</th>
+                    <th scope="col">Количество кликов</th>
+                    <th scope="col">Последний визит</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.url }}</td>
+                        <td>{{ item.counter }}</td>
+                        <td>{{ item.lastVisit | date('d.m.Y H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <nav aria-label="pages" class="my-5">
+                <ul class="pagination">
+                    {% for page in 1..pages %}
+                        <li class="page-item {{ page == currentPage ? 'active' : '' }}">
+                            <a class="page-link" href="{{ path('app_admin_activity', {'page': page}) }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        {% else %}
+            <p>Нет данных</p>
+        {% endif %}
+    {%endif%}
+
+
+</div>
+{% endblock %}

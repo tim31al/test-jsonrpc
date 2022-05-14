@@ -40,7 +40,8 @@ class GetClicksMethodTest extends WebTestCase
 
         $content = $this->getRequestData($client);
 
-        $this->assertCount(2, $content['result']);
+        $this->assertCount(2, $content['result']['clicks']);
+        $this->assertSame(9, $content['result']['countAll']);
     }
 
     public function testGetClicksLimit2Offset2(): void
@@ -70,8 +71,9 @@ class GetClicksMethodTest extends WebTestCase
 
         $this->assertCount(2, $content['result']);
 
-        $this->assertSame($content['result'][0]['url'], '/path/3');
-        $this->assertSame($content['result'][1]['url'], '/path/4');
+        $this->assertSame('/path/7', $content['result']['clicks'][0]['url'],);
+        $this->assertSame(2, $content['result']['clicks'][0]['counter']);
+        $this->assertSame('/path/6', $content['result']['clicks'][1]['url']);
     }
 
     /**
