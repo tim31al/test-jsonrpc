@@ -56,7 +56,7 @@ class ActivityService
             $clicks = array_map($mapper, $dataClicks);
 
             $allItems = $data['result']['countAll'];
-            $pages = ceil($allItems / static::PER_PAGE);
+            $pages = $allItems ? ceil($allItems / static::PER_PAGE) : 0;
             
             return [$pages, $clicks];
             

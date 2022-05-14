@@ -4,7 +4,7 @@ framework:
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 options:
-                    auto_setup: false
+                    auto_setup: true
 
         routing:
             Symfony\Component\Mailer\Messenger\SendEmailMessage: async
