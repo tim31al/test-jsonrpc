@@ -1,6 +1,6 @@
 # run
 
-git clone ... my_dir
+git clone git@github.com:tim31al/test-jsonrpc.git my_dir
 
 cd my_dir
 
