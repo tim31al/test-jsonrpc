@@ -20,7 +20,7 @@ class ActivityController extends AbstractController
     {
         $error = null;
         $currentPage = $request->get('page') ?? 1;
-        
+
         try {
             list($pages, $items) = $service->getItems($currentPage);
         } catch (JsonRpcErrorException $e) {
@@ -28,7 +28,6 @@ class ActivityController extends AbstractController
             $pages = 0;
             $items = [];
         }
-
 
         return $this->render('admin/activity/index.html.twig', [
             'controller_name' => 'ActivityController',

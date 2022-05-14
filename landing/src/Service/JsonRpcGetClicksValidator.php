@@ -40,8 +40,8 @@ class JsonRpcGetClicksValidator
                                 'counter' => new Assert\GreaterThan(0),
                                 'lastVisit' => new Assert\DateTime(),
                             ],
-                        ])
-                    ])
+                        ]),
+                    ]),
                 ],
                 'countAll' => new Assert\GreaterThanOrEqual(0),
             ]),
@@ -58,7 +58,7 @@ class JsonRpcGetClicksValidator
         if (0 !== \count($violations)) {
             $errors = [];
             foreach ($violations as $violation) {
-                $errors[] = $violation->getPropertyPath() . ':' . $violation->getMessage();
+                $errors[] = $violation->getPropertyPath().':'.$violation->getMessage();
             }
 
             $message = implode(', ', $errors);

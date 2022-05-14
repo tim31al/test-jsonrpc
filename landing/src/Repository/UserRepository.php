@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * (c) Alexandr Timofeev <tim31al@gmail.com>
+ */
+
 namespace App\Repository;
 
 use App\Entity\User;

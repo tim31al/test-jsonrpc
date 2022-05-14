@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * (c) Alexandr Timofeev <tim31al@gmail.com>
+ */
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,4 +17,3 @@ class SecurityController extends AbstractController
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 }
-

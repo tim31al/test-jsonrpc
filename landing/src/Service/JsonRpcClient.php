@@ -8,6 +8,7 @@ namespace App\Service;
 
 use App\DTO\JsonRpcDtoInterface;
 use App\Service\Exception\JsonRpcClientException;
+use Exception;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -68,8 +69,13 @@ class JsonRpcClient
 
             $data = $response->toArray();
 
+            if (!isset($data['token'])) {
+                $message = isset($data['error']) ?? 'Error auth';
+                throw new Exception($message);
+            }
+
             return $data['token'];
-        } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+        } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|Exception $e) {
             throw new JsonRpcClientException($e->getMessage());
         }
     }

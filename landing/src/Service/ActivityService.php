@@ -21,9 +21,8 @@ class ActivityService
     private JsonRpcGetClicksValidator $validator;
 
     /**
-     * @param \App\Service\JsonRpcClient $client
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \App\Service\JsonRpcErrorValidator $errorValidator
+     * @param \App\Service\JsonRpcClient             $client
+     * @param \App\Service\JsonRpcErrorValidator     $errorValidator
      * @param \App\Service\JsonRpcGetClicksValidator $validator
      */
     public function __construct(JsonRpcClient $client, LoggerInterface $logger, JsonRpcErrorValidator $errorValidator, JsonRpcGetClicksValidator $validator)
@@ -57,14 +56,12 @@ class ActivityService
 
             $allItems = $data['result']['countAll'];
             $pages = $allItems ? ceil($allItems / static::PER_PAGE) : 0;
-            
-            return [$pages, $clicks];
-            
         } catch (JsonRpcClientException $e) {
-            
             $this->logger->error($e->getMessage());
-
-            return [];
+            $pages = 0;
+            $clicks = [];
         }
+
+        return [$pages, $clicks];
     }
 }

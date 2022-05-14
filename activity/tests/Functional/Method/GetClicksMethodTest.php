@@ -71,7 +71,7 @@ class GetClicksMethodTest extends WebTestCase
 
         $this->assertCount(2, $content['result']);
 
-        $this->assertSame('/path/7', $content['result']['clicks'][0]['url'],);
+        $this->assertSame('/path/7', $content['result']['clicks'][0]['url']);
         $this->assertSame(2, $content['result']['clicks'][0]['counter']);
         $this->assertSame('/path/6', $content['result']['clicks'][1]['url']);
     }

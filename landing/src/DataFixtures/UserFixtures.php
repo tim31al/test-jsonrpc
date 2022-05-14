@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * (c) Alexandr Timofeev <tim31al@gmail.com>
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\User;
@@ -11,9 +15,6 @@ class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $passwordHasher;
 
-    /**
-     * @param \Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface $passwordHasher
-     */
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
@@ -26,7 +27,7 @@ class UserFixtures extends Fixture
             ->setEmail('admin@example.com')
             ->setRoles(['ROLE_ADMIN'])
             ;
-        
+
         $password = 'admin';
         $hash = $this->passwordHasher->hashPassword($user, $password);
         $user->setPassword($hash);

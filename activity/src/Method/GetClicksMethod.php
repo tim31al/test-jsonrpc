@@ -42,7 +42,7 @@ class GetClicksMethod implements JsonRpcMethodInterface, MethodWithValidatedPara
 
         return [
             'clicks' => $clicks,
-            'countAll' => $count
+            'countAll' => $count,
         ];
     }
 
