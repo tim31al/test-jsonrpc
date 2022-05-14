@@ -1,11 +1,19 @@
 # run
 
-git clone git@github.com:tim31al/test-jsonrpc.git my_dir
+```git clone git@github.com:tim31al/test-jsonrpc.git my_dir```
 
-cd my_dir
+```cd my_dir```
 
-docker-compose up 
+Запустить контейнеры:
 
-bash init.sh
+```docker-compose up```
+
+дождаться пока загрузятся и в новом окне инициализировать проект
+
+```bash init.sh```
 
 http://localhost:8081
+
+после работы, остановить и удалить контейнеры
+
+```docker-comspose down -v```
